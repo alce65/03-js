@@ -29,3 +29,26 @@ console.log(() => {}, typeof (() => {}));
 [].map((item) => item);
 'PEPE'.toLowerCase();
 true.valueOf();
+
+{
+    const a = 12;
+    const b = 22;
+    console.log(a || b);
+    console.log(a && b);
+}
+
+// Truthy
+console.log(Boolean({}));
+console.log(Boolean([]));
+
+// Falsy
+console.log(Boolean(false));
+console.log(Boolean(undefined));
+console.log(Boolean(null));
+console.log(Boolean(0));
+console.log(Boolean(-0));
+console.log(Boolean(''));
+console.log(Boolean(NaN));
+
+console.log(Number({}));
+console.log(Number([79]));
