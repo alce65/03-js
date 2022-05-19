@@ -42,3 +42,16 @@ console.log(fifty.toPrecision(4));
 console.log(fifty);
 
 // ERROR fifty.shades = 'gray';
+
+// const = Asignación constate
+
+const fuu = 8;
+const buu = {};
+const arr = [1, 2];
+buu.name = 'pepe';
+Object.freeze(buu);
+// ERROR buu.name = 'pepito';
+// ERROR buu.x = 8;
+Object.freeze(arr);
+// ERROR arr[0] = 9;
+// ERROR arr.push(2);
