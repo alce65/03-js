@@ -21,10 +21,8 @@ export class Empresa {
         this.#nif = nif;
     }
     print() {
-        return `
-        ${this.#name} - ${this.#nif}
+        return `${this.#name} - ${this.#nif}
         -------------
-        ${this.#address} - ${this.#phone}
-        `;
+        ${this.#address} - ${this.#phone}`;
     }
 }

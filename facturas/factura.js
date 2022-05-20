@@ -6,6 +6,7 @@ export class Factura {
     #cliente; // Empresa
     #productos; // Array<Producto>
     #total;
+    #totalIva;
     #tipoIVA;
     #formaPago;
 
@@ -22,19 +23,31 @@ export class Factura {
         this.#tipoIVA = tipoIVA;
         this.#formaPago = formaPago;
         this.#total = 0;
+        this.#calculate();
+    }
+    #calculate() {
+        this.#productos.forEach((item) => {
+            this.#total += item.price * item.quantity;
+        });
+        this.#totalIva = (this.#total * this.#tipoIVA) / 100;
     }
     print() {
-        // conts
-
+        let productos = '';
+        this.#productos.forEach((item) => {
+            productos += `
+            ${item.description} - ${item.price}€ - ${item.quantity}`;
+        });
         console.log(`
         Empresa : ${this.#empresa.print()}
         -------------------------------
         Cliente : ${this.#cliente.print()}
         -------------------------------
+            ${productos}
         ___________________________________
-        ${this.#tipoIVA}
-        ${this.#formaPago}
-        ${this.#total}           
-        `);
+        IVA: ${this.#tipoIVA}%
+        Forma de pago: ${this.#formaPago}
+        Total:  ${this.#total}  €
+        IVA ${this.#totalIva} €
+        Total + IVA ${this.#total + this.#totalIva} €  `);
     }
 }
