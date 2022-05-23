@@ -1,6 +1,8 @@
 import { liveCycle } from './helpers.gol.js';
 import { initialBoard } from './initial.js';
 
+let timer;
+
 export function createGrid(fil, col) {
     let html = '';
     for (let i = 0; i < fil * col; i++) {
@@ -23,6 +25,40 @@ export function createGridFromArray(array) {
     return html;
 }
 
+function handlerButton(ev, board) {
+    switch (ev.target.textContent) {
+        case 'Start':
+            timer = startLiveCycle(board);
+            break;
+        case 'Stop':
+            stopLiveCycle(timer);
+            break;
+
+        default: // Reset
+            resetLiveCycle();
+            break;
+    }
+}
+
+function startLiveCycle(board) {
+    const id = setInterval(() => {
+        board = liveCycle(board);
+        document.querySelector('section.grid').innerHTML =
+            createGridFromArray(board);
+    }, 1000);
+    return id;
+}
+
+function stopLiveCycle(timer) {
+    console.log('Stop', timer);
+    clearInterval(timer);
+}
+
+function resetLiveCycle() {
+    document.querySelector('section.grid').innerHTML =
+        createGridFromArray(initialBoard);
+}
+
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
         console.log('App Loaded');
@@ -32,10 +68,11 @@ export function createGridFromArray(array) {
         document.querySelector('section.grid').innerHTML =
             createGridFromArray(board);
 
-        setInterval(() => {
-            board = liveCycle(board);
-            document.querySelector('section.grid').innerHTML =
-                createGridFromArray(board);
-        }, 1000);
+        const buttons = document.querySelectorAll('section.buttons button');
+        buttons.forEach((item) =>
+            item.addEventListener('click', (ev) => {
+                handlerButton(ev, board);
+            })
+        );
     });
 })();
