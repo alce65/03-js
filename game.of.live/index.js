@@ -1,12 +1,6 @@
 import { liveCycle } from './helpers.gol.js';
+import { initialBoard } from './initial.js';
 
-const initialBoard = [
-    [1, 0, 1, 0, 1],
-    [0, 1, 0, 1, 0],
-    [1, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1],
-    [0, 0, 0, 0, 0],
-];
 console.clear();
 console.log(initialBoard);
 let board = initialBoard;
