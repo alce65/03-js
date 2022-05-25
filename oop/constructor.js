@@ -41,3 +41,8 @@ console.log('Is Array constructor', arr.constructor.isArray(arr));
 const str = '';
 String.fromCharCode(67);
 str.toLowerCase();
+
+// function Alumno(name, edad) {
+//     Person.call(this, [name, edad])
+//     Alumno.prototype = Person.prototype
+// }
